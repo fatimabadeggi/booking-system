@@ -8,9 +8,9 @@
     <meta name="description" content="au theme template">
     <meta name="author" content="Hau Nguyen">
     <meta name="keywords" content="au theme template">
-
+    
     <!-- Title Page-->
-    <title>Dashboard 3</title>
+    <title>@yield('title')</title>
 
     <!-- Fontfaces CSS-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
@@ -32,6 +32,10 @@
 
     <!-- Main CSS-->
     <link href="css/theme.css" rel="stylesheet" media="all">
+
+    <!-- Page custom style-->
+    
+    @yield('style')
 
 </head>
 

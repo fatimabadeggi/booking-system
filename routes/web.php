@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +20,9 @@ Route::get('/', function () {
 Route::get('/login', function() {
     return view('login');
 });
+
+Route::get('/registration', function() {
+    return view('registration-form');
+});
+
+Route::post('/registration', 'RegistrationFormController@processForm');

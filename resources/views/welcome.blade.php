@@ -84,7 +84,7 @@
 
                 <div class="links">
                     <a href="/login">Login</a>
-                    <a href="">Sign up</a>
+                    <a href="/registration">Sign up</a>
                     
                 </div>
             </div>

@@ -1,5 +1,7 @@
 @extends('layout.master')
 
+@section('title') Login Form @stop
+
 @section('page-content')
 
 <div class="page-content--bge5">
@@ -35,7 +37,7 @@
                             <div class="register-link">
                                 <p>
                                     Don't you have account?
-                                    <a href="#">Sign Up Here</a>
+                                    <a href="/registration">Sign Up Here</a>
                                 </p>
                             </div>
                         </div>
