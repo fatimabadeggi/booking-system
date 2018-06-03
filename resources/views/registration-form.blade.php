@@ -26,10 +26,10 @@
                                     <label>Full Name:</label>
                                     <input 
                                     class="au-input au-input--full form-control
-                                    @if($errors->has('fname')) is-invalid @endif" 
+                                    @if($errors->has('fullname')) is-invalid @endif" 
                                     type="text" name="fullname" 
                                     placeholder="Full Name"
-                                    value="{{ old('fname') }} ">
+                                    value="{{ old('fullname') }} ">
                                 </div>
 
 
@@ -53,12 +53,13 @@
                                     <label>Email Address</label>
                                     <input class="au-input au-input--full form-control
                                     @if($errors->has('email')) is-invalid @endif" type="email" name="email" placeholder="Email"
-                                    value="{{ old('emai') }} ">
+                                    value="{{ old('email') }} ">
                                </div>
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input class="au-input au-input--full form-control
-                                    @if($errors->has('password')) is-invalid @endif" type="password" name="password" placeholder="Password">
+                                    @if($errors->has('password')) is-invalid @endif" 
+                                    type="password" name="password" placeholder="Password">
                                 </div>
 
                                 <div class="form-group">
