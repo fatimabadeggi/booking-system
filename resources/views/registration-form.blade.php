@@ -37,27 +37,34 @@
                                     <label>Address:</label>
                                     <input class="au-input au-input--full form-control
                                     @if($errors->has('address')) is-invalid @endif" 
-                                    type="text" name="address" placeholder="Contact Address">
+                                    type="text" name="address" placeholder="Contact Address"
+                                    value="{{ old('address') }} ">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Tel No:</label>
-                                    <input class="au-input au-input--full" 
-                                    type="text" name="tel" placeholder="Contact Address">
+                                    <input class="au-input au-input--full form-control
+                                    @if($errors->has('tel')) is-invalid @endif" 
+                                    type="text" name="tel" placeholder="Contact Address"
+                                    value="{{ old('tel') }} ">
                                 </div>
                                 
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
-                                </div>
+                                    <input class="au-input au-input--full form-control
+                                    @if($errors->has('email')) is-invalid @endif" type="email" name="email" placeholder="Email"
+                                    value="{{ old('emai') }} ">
+                               </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <input class="au-input au-input--full form-control
+                                    @if($errors->has('password')) is-invalid @endif" type="password" name="password" placeholder="Password">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Confirm Password</label>
-                                    <input class="au-input au-input--full" 
+                                    <input class="au-input au-input--full form-control
+                                    @if($errors->has('password_confirmation')) is-invalid @endif" 
                                     type="password" name="password_confirmation" placeholder="Password">
                                 </div>
 
