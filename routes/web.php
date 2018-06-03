@@ -17,9 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', function() {
-    return view('login');
-});
+Route::get('/login', 
+    'Auth\LoginController@showLoginForm');
+
+Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/registration', function() {
     return view('registration-form');
@@ -27,6 +28,12 @@ Route::get('/registration', function() {
 
 Route::post('/registration', 'RegistrationFormController@processForm');
 
+// Route::post('/login', '');
+
 Route::get('/dashboard', function() {
     return view('admin.dashboard');
 });
+
+//Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

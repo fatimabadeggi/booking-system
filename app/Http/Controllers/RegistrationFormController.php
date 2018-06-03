@@ -24,6 +24,11 @@ class RegistrationFormController extends Controller
 
         $formdata = $request->except('_token');
         $formdata['type'] = 'customer';
+
+        //hash the password value
+        //stop
+        $formdata['password'] = bcrypt($request->get('password'));
+
         $user = new User($formdata);
         $user->save();
         
