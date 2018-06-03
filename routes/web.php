@@ -26,3 +26,7 @@ Route::get('/registration', function() {
 });
 
 Route::post('/registration', 'RegistrationFormController@processForm');
+
+Route::get('/dashboard', function() {
+    return view('admin.dashboard');
+});
