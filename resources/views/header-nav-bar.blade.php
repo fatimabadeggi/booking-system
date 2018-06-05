@@ -1,3 +1,7 @@
+<?php 
+    $user = Auth::user();
+ ?>
+{{-- dd($user) --}}
 <div class="page-wrapper">
         <!-- HEADER DESKTOP-->
         <header class="header-desktop3 d-none d-lg-block">
@@ -17,20 +21,18 @@
                                 </a>
                                 <ul class="header3-sub-list list-unstyled">
                                     <li>
-                                        <a href="index.html">Dashboard 1</a>
+                                        <a href="/dashboard">Dashboard</a>
                                     </li>
+                                    
+                                    @if($user->type == 'admin')
                                     <li>
-                                        <a href="index2.html">Dashboard 2</a>
+                                        <a href="/viewcustomers">View Customers</a>
                                     </li>
-                                    <li>
-                                        <a href="index3.html">Dashboard 3</a>
-                                    </li>
-                                    <li>
-                                        <a href="index4.html">Dashboard 4</a>
-                                    </li>
+                                    @endif
+
                                 </ul>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="#">
                                     <i class="fas fa-shopping-basket"></i>
                                     <span class="bot-line"></span>eCommerce</a>
@@ -40,6 +42,7 @@
                                     <i class="fas fa-trophy"></i>
                                     <span class="bot-line"></span>Features</a>
                             </li>
+                            !-->
                             <li class="has-sub">
                                 <a href="#">
                                     <i class="fas fa-copy"></i>
@@ -53,46 +56,6 @@
                                     </li>
                                     <li>
                                         <a href="forget-pass.html">Forget Password</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="has-sub">
-                                <a href="#">
-                                    <i class="fas fa-desktop"></i>
-                                    <span class="bot-line"></span>UI Elements</a>
-                                <ul class="header3-sub-list list-unstyled">
-                                    <li>
-                                        <a href="button.html">Button</a>
-                                    </li>
-                                    <li>
-                                        <a href="badge.html">Badges</a>
-                                    </li>
-                                    <li>
-                                        <a href="tab.html">Tabs</a>
-                                    </li>
-                                    <li>
-                                        <a href="card.html">Cards</a>
-                                    </li>
-                                    <li>
-                                        <a href="alert.html">Alerts</a>
-                                    </li>
-                                    <li>
-                                        <a href="progress-bar.html">Progress Bars</a>
-                                    </li>
-                                    <li>
-                                        <a href="modal.html">Modals</a>
-                                    </li>
-                                    <li>
-                                        <a href="switch.html">Switchs</a>
-                                    </li>
-                                    <li>
-                                        <a href="grid.html">Grids</a>
-                                    </li>
-                                    <li>
-                                        <a href="fontawesome.html">FontAwesome</a>
-                                    </li>
-                                    <li>
-                                        <a href="typo.html">Typography</a>
                                     </li>
                                 </ul>
                             </li>
@@ -154,7 +117,7 @@
                                             <i class="zmdi zmdi-money-box"></i>Billing</a>
                                     </div>
                                 </div>
-                                <div class="account-dropdown__body">
+                                <!--<div class="account-dropdown__body">
                                     <div class="account-dropdown__item">
                                         <a href="#">
                                             <i class="zmdi zmdi-globe"></i>Language</a>
@@ -171,29 +134,29 @@
                                         <a href="#">
                                             <i class="zmdi zmdi-notifications"></i>Notifications</a>
                                     </div>
-                                </div>
+                                </div> !-->
                             </div>
                         </div>
                         <div class="account-wrap">
                             <div class="account-item account-item--style2 clearfix js-item-menu">
-                                <div class="image">
-                                    <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                <div class="image" style="border: 1px solid #c6c6c6; background-color:#f3f3f3">
+                                    <img src="" alt=" " />
                                 </div>
                                 <div class="content">
                                     <a class="js-acc-btn" href="#">john doe</a>
                                 </div>
                                 <div class="account-dropdown js-dropdown">
                                     <div class="info clearfix">
-                                        <div class="image">
+                                        <div class="image" style="border: 1px solid #c6c6c6; background-color:#f3f3f3">
                                             <a href="#">
-                                                <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                <img src="" alt=" " />
                                             </a>
                                         </div>
                                         <div class="content">
                                             <h5 class="name">
-                                                <a href="#">john doe</a>
+                                                <a href="#">{{ $user->fullname }}</a>
                                             </h5>
-                                            <span class="email">johndoe@example.com</span>
+                                            <span class="email">{{ $user->email }}</span>
                                         </div>
                                     </div>
                                     <div class="account-dropdown__body">
@@ -201,18 +164,19 @@
                                             <a href="#">
                                                 <i class="zmdi zmdi-account"></i>Account</a>
                                         </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-settings"></i>Setting</a>
-                                        </div>
-                                        <div class="account-dropdown__item">
-                                            <a href="#">
-                                                <i class="zmdi zmdi-money-box"></i>Billing</a>
-                                        </div>
+                                        
+                                        @if($user->type == 'customer')
+                                            <div class="account-dropdown__item">
+                                                <a href="#">
+                                                    <i class="zmdi zmdi-money-box"></i>Billing</a>
+                                            </div>
+                                        @endif
+
                                     </div>
                                     <div class="account-dropdown__footer">
-                                        <a href="#">
-                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                        <a href="/logout">
+                                            <i class="zmdi zmdi-power">
+                                            </i>Logout</a>
                                     </div>
                                 </div>
                             </div>

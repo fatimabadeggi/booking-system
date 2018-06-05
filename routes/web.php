@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/login', 
-    'Auth\LoginController@showLoginForm');
+    'Auth\LoginController@showLoginForm')->name('login');
 
 Route::post('/login', 'Auth\LoginController@login');
 
@@ -26,13 +26,15 @@ Route::get('/registration', function() {
     return view('registration-form');
 });
 
-Route::post('/registration', 'RegistrationFormController@processForm');
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::post('/registration', 
+'RegistrationFormController@processForm');
 
 // Route::post('/login', '');
 
-Route::get('/dashboard', function() {
-    return view('admin.dashboard');
-});
+Route::get('/dashboard', 'DashboardController@showPage')->middleware('auth');
+Route::get('/viewcustomers', 'ViewCustomerController@showCustomers')->middleware('auth');
 
 //Auth::routes();
 

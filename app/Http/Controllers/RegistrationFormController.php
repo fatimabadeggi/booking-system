@@ -32,7 +32,7 @@ class RegistrationFormController extends Controller
         $user = new User($formdata);
         $user->save();
         
-        dd('registraton successful');
+        return redirect('/login');
     }
 
     

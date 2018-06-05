@@ -15,6 +15,7 @@
                         </div>
                         <div class="login-form">
                             <form action="/login" method="post">
+                                {{ csrf_field() }}
                                 <div class="form-group">
                                     <label>Email Address</label>
                                     <input class="au-input au-input--full" type="email" name="email" placeholder="Email">

@@ -34,8 +34,6 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        dd(bcrypt('12345'));
-        
         $this->middleware('guest')->except('logout');
     }
 
@@ -43,4 +41,6 @@ class LoginController extends Controller
     {
         return view('login');
     }
+
+    
 }
