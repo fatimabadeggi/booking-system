@@ -18,11 +18,15 @@
                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label>Email Address</label>
-                                    <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
+                                    <input class="au-input au-input--full form-control
+                                    @if($errors->has('email')) is-invalid @endif" 
+                                     type="email" name="email" placeholder="Email">
                                 </div>
                                 <div class="form-group">
                                     <label>Password</label>
-                                    <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
+                                    <input class="au-input au-input--full form-control
+                                    @if($errors->has('password')) is-invalid @endif" 
+                                     type="password" name="password" placeholder="Password">
                                 </div>
                                 <div class="login-checkbox">
                                     <label>

@@ -26,10 +26,10 @@
                                     <label>Full Name:</label>
                                     <input 
                                     class="au-input au-input--full form-control
-                                    @if($errors->has('fullname')) is-invalid @endif" 
+                                    @if($errors->has('fname')) is-invalid @endif" 
                                     type="text" name="fullname" 
                                     placeholder="Full Name"
-                                    value="{{ old('fullname') }} ">
+                                    value="{{ old('fname') }} ">
                                 </div>
 
 
@@ -58,8 +58,7 @@
                                 <div class="form-group">
                                     <label>Password</label>
                                     <input class="au-input au-input--full form-control
-                                    @if($errors->has('password')) is-invalid @endif" 
-                                    type="password" name="password" placeholder="Password">
+                                    @if($errors->has('password')) is-invalid @endif" type="password" name="password" placeholder="Password">
                                 </div>
 
                                 <div class="form-group">
@@ -67,6 +66,7 @@
                                     <input class="au-input au-input--full form-control
                                     @if($errors->has('password_confirmation')) is-invalid @endif" 
                                     type="password" name="password_confirmation" placeholder="Password">
+
                                 </div>
 
                                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">register</button>
