@@ -42,7 +42,14 @@
 <body class="animsition">
     <div class="page-wrapper">
         @yield('header-nav-bar')
-        
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>@yield('page-title')</h3>
+                 </div>
+            </div>
+        </div>
         @yield('page-content')
 
         

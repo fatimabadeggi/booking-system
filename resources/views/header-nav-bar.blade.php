@@ -32,17 +32,7 @@
 
                                 </ul>
                             </li>
-                            <!-- <li>
-                                <a href="#">
-                                    <i class="fas fa-shopping-basket"></i>
-                                    <span class="bot-line"></span>eCommerce</a>
-                            </li>
-                            <li>
-                                <a href="table.html">
-                                    <i class="fas fa-trophy"></i>
-                                    <span class="bot-line"></span>Features</a>
-                            </li>
-                            !-->
+                           
                             <li class="has-sub">
                                 <a href="#">
                                     <i class="fas fa-copy"></i>
@@ -59,6 +49,22 @@
                                     </li>
                                 </ul>
                             </li>
+
+                            <li class="has-sub">
+                                <a href="#">
+                                    <i class="fas fa-copy"></i>
+                                    <span class="bot-line"></span>Manage Inventory</a>
+                                <ul class="header3-sub-list list-unstyled">
+                                    <li>
+                                        <a href="/addnewinventorytype">Add New Inventory Type</a>
+                                    </li>
+                                    <li>
+                                        <a href="">Add New Inventory</a>
+                                    </li>
+                                    
+                                </ul>
+                            </li>
+
                         </ul>
                     </div>
                     <div class="header__tool">

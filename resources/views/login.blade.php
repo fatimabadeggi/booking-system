@@ -12,6 +12,9 @@
                             <a href="#">
                                 <img src="images/icon/logo.png" alt="CoolAdmin">
                             </a>
+                            @if(!$errors->isEmpty())
+                                <h3>Error</h3>
+                            @endif
                         </div>
                         <div class="login-form">
                             <form action="/login" method="post">

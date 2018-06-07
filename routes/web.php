@@ -33,9 +33,17 @@ Route::post('/registration',
 
 // Route::post('/login', '');
 
-Route::get('/dashboard', 'DashboardController@showPage')->middleware('auth');
-Route::get('/viewcustomers', 'ViewCustomerController@showCustomers')->middleware('auth');
+
 
 //Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Admin Routes
+Route::get('/dashboard', 'DashboardController@showPage')->middleware('auth');
+Route::get('/viewcustomers', 'ViewCustomerController@showCustomers')->middleware('auth');
+
+//new inventory type  routes
+Route::get('/addnewinventorytype', 'InventoryTypeController@showPage')->middleware('auth');
+Route::post('/addnewinventorytype', 'InventoryTypeController@processForm')->middleware('auth');
+
