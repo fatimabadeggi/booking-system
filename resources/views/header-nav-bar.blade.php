@@ -59,7 +59,7 @@
                                         <a href="/addnewinventorytype">Add New Inventory Type</a>
                                     </li>
                                     <li>
-                                        <a href="">Add New Inventory</a>
+                                        <a href="/addnewinventoryitem">Add New Inventory</a>
                                     </li>
                                     
                                 </ul>

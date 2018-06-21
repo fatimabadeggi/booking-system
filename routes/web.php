@@ -44,6 +44,14 @@ Route::get('/dashboard', 'DashboardController@showPage')->middleware('auth');
 Route::get('/viewcustomers', 'ViewCustomerController@showCustomers')->middleware('auth');
 
 //new inventory type  routes
-Route::get('/addnewinventorytype', 'InventoryTypeController@showPage')->middleware('auth');
+Route::get('/addnewinventorytype', 'InventoryTypeController@showPage')
+    ->middleware('auth');
 Route::post('/addnewinventorytype', 'InventoryTypeController@processForm')->middleware('auth');
+
+
+Route::get('/addnewinventoryitem', 'InventoryItemController@showPage')
+->middleware('auth');
+Route::post('/addnewinventoryitem', 'InventoryItemController@processForm')
+->middleware('auth');
+
 
