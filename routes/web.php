@@ -47,6 +47,9 @@ Route::get('/viewcustomers', 'ViewCustomerController@showCustomers')->middleware
 Route::get('/addnewinventorytype', 'InventoryTypeController@showPage')
     ->middleware('auth');
 Route::post('/addnewinventorytype', 'InventoryTypeController@processForm')->middleware('auth');
+Route::get('/editinventorytype/{id}', 'InventoryTypeController@getInventoryType')->middleware('auth');
+Route::post('/editinventorytype', 'InventoryTypeController@updateInventoryType')->middleware('auth');
+Route::post('/deleteinventorytype', 'InventoryTypeController@deleteType')->middleware('auth');
 
 
 Route::get('/addnewinventoryitem', 'InventoryItemController@showPage')
