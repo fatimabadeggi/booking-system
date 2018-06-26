@@ -52,9 +52,13 @@ Route::post('/editinventorytype', 'InventoryTypeController@updateInventoryType')
 Route::post('/deleteinventorytype', 'InventoryTypeController@deleteType')->middleware('auth');
 
 
+//inventory item
 Route::get('/addnewinventoryitem', 'InventoryItemController@showPage')
 ->middleware('auth');
 Route::post('/addnewinventoryitem', 'InventoryItemController@processForm')
 ->middleware('auth');
+Route::get('/editinventoryitem/{id}', 'InventoryItemController@getInventoryItem')->middleware('auth');
+Route::post('/editinventoryitem', 'InventoryItemController@updateInventoryItem')->middleware('auth');
+Route::post('/deleteinventoryitem', 'InventoryItemController@deleteItem')->middleware('auth');
 
 

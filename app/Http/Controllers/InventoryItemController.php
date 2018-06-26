@@ -22,9 +22,11 @@ class InventoryItemController extends Controller
         //fetch all inventory items;
         $inventoryitems = InventoryItem::all();
 
+        $inventoryitem = NULL;
+
         //display the page
         return view('admin.addnewinventoryitem', 
-            compact('inventorytypes', 'inventoryitems'));
+            compact('inventorytypes', 'inventoryitems', 'inventoryitem'));
     }
 
     public function processForm(Request $request)
@@ -45,6 +47,63 @@ class InventoryItemController extends Controller
 
         return redirect()->back();
         
+    }
+
+    public function getInventoryItem($id)
+    {
+       
+        $inventoryitem = InventoryItem::find($id);
+
+        //fetch all inventory types
+        $inventorytypes = InventoryType::getAll();
+
+        return view('admin.addnewinventoryitem', 
+        compact('inventoryitem', 'inventorytypes'));
+    }
+
+    public function updateInventoryItem(Request $request)
+    {
+     
+        $formdata = $request->except('_token');
+
+        $id = $formdata['id'];
+
+        $inventoryitem = InventoryItem::find($id);
+        
+                $rules = [
+                            'inventory_type_id'=> 'required|numeric',
+                            'size'=> 'required|numeric'
+                        ];
+
+            if ($formdata['name'] != $inventoryitem->name) {
+                $rules['name'] = 'required|string|unique:InventoryItem';
+
+                //item 
+                $inventoryitem->name = $formdata['name'];
+            }
+                
+            Validator::make($formdata, $rules)->validate();
+
+            //update the item
+            $inventoryitem->inventory_type_id = $formdata['inventory_type_id'];
+            $inventoryitem->size = $formdata['size'];
+            $inventoryitem->status = $formdata['status'];
+            $inventoryitem->update();
+            
+            return redirect('/addnewinventoryitem');
+           
+
+    }
+
+    public function deleteItem(Request $request)
+    {
+        $id = $request->get('id');
+
+        $inventoryitem = InventoryItem::find($id);
+
+        $inventoryitem->delete();
+
+        return redirect('/addnewinventoryitem');
     }
 
 }
