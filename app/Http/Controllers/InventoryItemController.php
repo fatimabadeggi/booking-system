@@ -16,6 +16,7 @@ class InventoryItemController extends Controller
 
     public function showPage() 
     {
+        // dd(storage_path());
         //fetch all inventory types
         $inventorytypes = InventoryType::getAll();
 
@@ -37,13 +38,21 @@ class InventoryItemController extends Controller
         $rules = [
                     'name'=>'required|string|unique:InventoryItem',
                     'inventory_type_id'=> 'required|numeric',
-                    'size'=> 'required|numeric'
+                    'size'=> 'required|numeric',
+                    'dec_price' => 'required|numeric',
+                    'no_dec_price' => 'required|numeric'
                 ];
         
         Validator::make($formdata, $rules)->validate();
 
         $newitem = new InventoryItem($formdata);
         $newitem->save();
+
+        //verify if image was uploaded
+        if($request->hasFile('image')) {
+            $filename = $newitem->id.'.jpg';
+            $request->image->storeAs('public/images', $filename);
+        }
 
         return redirect()->back();
         
@@ -72,7 +81,9 @@ class InventoryItemController extends Controller
         
                 $rules = [
                             'inventory_type_id'=> 'required|numeric',
-                            'size'=> 'required|numeric'
+                            'size'=> 'required|numeric',
+                            'dec_price' => 'required|numeric',
+                            'no_dec_price' => 'required|numeric'
                         ];
 
             if ($formdata['name'] != $inventoryitem->name) {
@@ -88,7 +99,15 @@ class InventoryItemController extends Controller
             $inventoryitem->inventory_type_id = $formdata['inventory_type_id'];
             $inventoryitem->size = $formdata['size'];
             $inventoryitem->status = $formdata['status'];
+            $inventoryitem->dec_price = $formdata['dec_price'];
+            $inventoryitem->no_dec_price = $formdata['no_dec_price'];
             $inventoryitem->update();
+
+             //verify if image was uploaded
+            if($request->hasFile('image')) {
+                $filename = $id.'.jpg';
+                $request->image->storeAs('public/images', $filename);
+            }
             
             return redirect('/addnewinventoryitem');
            

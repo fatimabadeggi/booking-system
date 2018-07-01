@@ -22,10 +22,12 @@
                     <div class="card-body">
 
                         @if($updatestatus)
-                            <form action="/editinventoryitem" method="post">
+                            <form action="/editinventoryitem" method="post"
+                            enctype="multipart/form-data">
                             <input type="hidden" name="id" value="{{$inventoryitem->id}}" />
                         @else
-                            <form action="/addnewinventoryitem" method="post">
+                            <form action="/addnewinventoryitem" method="post" 
+                            enctype="multipart/form-data">
                         @endif
                             {{ csrf_field() }}
                             <div class="form-group">
@@ -82,6 +84,36 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Decoration Price:</label>
+
+                                <input name="dec_price" type="text" 
+                                
+                                @if($updatestatus) 
+                                value="{{$inventoryitem->dec_price}}"
+                                @endif
+
+                                class="form-control" aria-required="true"> @if(!$errors->isEmpty() && isset($errors->get('dec_price')[0]))
+                                <span class="help-block has-error">
+                                    {{-- $errors->get('size')[0] --}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">No Decoration Price:</label>
+
+                                <input name="no_dec_price" type="text" 
+                                
+                                @if($updatestatus) 
+                                value="{{$inventoryitem->no_dec_price}}"
+                                @endif
+
+                                class="form-control" aria-required="true"> @if(!$errors->isEmpty() && isset($errors->get('no_dec_price')[0]))
+                                <span class="help-block has-error">
+                                    {{-- $errors->get('size')[0] --}}</span>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
                                 <label for="cc-payment" class="control-label mb-1">Status:</label>
 
                                 <select name="status" class="form-control">
@@ -97,6 +129,19 @@
                                     @endif
                                     >Not Available</option>
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cc-payment" class="control-label mb-1">Image</label>
+
+                                <input name="image" type="file"/>
+                                
+
+                                
+                                @if($updatestatus) 
+                                    <image src="{{asset('storage/images/'.$inventoryitem->id.'.jpg')}}" alt="img" />
+                                @endif
+                                
                             </div>
 
                             <button type="submit" class="btn btn-lg btn-info btn-block">

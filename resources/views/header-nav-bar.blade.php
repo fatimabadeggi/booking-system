@@ -33,23 +33,23 @@
                                 </ul>
                             </li>
                            
+                            @if($user->type == 'customer')
                             <li class="has-sub">
                                 <a href="#">
                                     <i class="fas fa-copy"></i>
-                                    <span class="bot-line"></span>Pages</a>
+                                    <span class="bot-line"></span>Reservation</a>
                                 <ul class="header3-sub-list list-unstyled">
                                     <li>
-                                        <a href="login.html">Login</a>
+                                        <a href="/makereservation">Make Reservation</a>
                                     </li>
                                     <li>
-                                        <a href="register.html">Register</a>
-                                    </li>
-                                    <li>
-                                        <a href="forget-pass.html">Forget Password</a>
+                                        <a href="register.html">View Reservations</a>
                                     </li>
                                 </ul>
                             </li>
+                            @endif
 
+                            @if($user->type == 'admin')
                             <li class="has-sub">
                                 <a href="#">
                                     <i class="fas fa-copy"></i>
@@ -64,6 +64,7 @@
                                     
                                 </ul>
                             </li>
+                            @endif
 
                         </ul>
                     </div>

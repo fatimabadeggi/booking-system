@@ -61,4 +61,9 @@ Route::get('/editinventoryitem/{id}', 'InventoryItemController@getInventoryItem'
 Route::post('/editinventoryitem', 'InventoryItemController@updateInventoryItem')->middleware('auth');
 Route::post('/deleteinventoryitem', 'InventoryItemController@deleteItem')->middleware('auth');
 
+//Reservations
+Route::get('/makereservation', 'ReservationController@showListOfHalls');
+Route::post('/makereservation', 'ReservationController@processReservation');
+
+
 
