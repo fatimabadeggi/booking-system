@@ -8,23 +8,21 @@
 @section('page-content')
     <div class="page-content--bgf7">
         <!-- DATA TABLE-->
+        
+        @if(Auth::user()->isAdmin())
+            isAdmin
+        @else
             <section class="p-t-20">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            
+                            <h3> Most recent booking </h3>
                             <div class="table-responsive table-responsive-data2">
                                 <table class="table table-data2">
                                     <thead>
                                         <tr>
-                                            <th>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
-                                            </th>
-                                            <th>name</th>
-                                            <th>email</th>
+                                            <th>S/N</th>
+                                            <th>Name </th>
                                             <th>description</th>
                                             <th>date</th>
                                             <th>status</th>
@@ -33,75 +31,45 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php $i = 1; ?>
+                                        @foreach($bookings as $booking)
                                         <tr class="tr-shadow">
+                                            <td>{{ $i++ }}</td>
+                                            <td>{{ $booking->inventoryItem->name }}</td>
                                             <td>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
+                                                <p> 
+                                                    Type: {{ $booking->inventoryItem->inventoryType->type }}
+                                                </p>
+
+                                                <br>
+                                                <p>
+                                                Decoration: {{ $booking->decoration }} </p>
+
+                                                <br>    
+                                                <p>Hours: {{ $booking->hours }}</p>
+
                                             </td>
-                                            <td>Lori Lynch</td>
+                                            <td class="desc">{{ $booking->booking_date }}</td>
+                                            <td> <span class="status--denied"> <!--.status--process !-->
+                                                {{ $booking->status }} </span>
+                                            </td>
                                             <td>
-                                                <span class="block-email">lori@example.com</span>
+                                                <span>{{ $booking->price }}</span>
                                             </td>
-                                            <td class="desc">Samsung S8 Black</td>
-                                            <td>2018-09-27 02:12</td>
-                                            <td>
-                                                <span class="status--process">Processed</span>
-                                            </td>
-                                            <td>$679.00</td>
+                                            
                                             <td>
                                                 <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                        <i class="zmdi zmdi-mail-send"></i>
-                                                    </button>
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                                         <i class="zmdi zmdi-edit"></i>
                                                     </button>
                                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                         <i class="zmdi zmdi-delete"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                        <i class="zmdi zmdi-more"></i>
                                                     </button>
                                                 </div>
                                             </td>
                                         </tr>
                                         <tr class="spacer"></tr>
-                                        <tr class="tr-shadow">
-                                            <td>
-                                                <label class="au-checkbox">
-                                                    <input type="checkbox">
-                                                    <span class="au-checkmark"></span>
-                                                </label>
-                                            </td>
-                                            <td>Lori Lynch</td>
-                                            <td>
-                                                <span class="block-email">john@example.com</span>
-                                            </td>
-                                            <td class="desc">iPhone X 64Gb Grey</td>
-                                            <td>2018-09-29 05:57</td>
-                                            <td>
-                                                <span class="status--process">Processed</span>
-                                            </td>
-                                            <td>$999.00</td>
-                                            <td>
-                                                <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Send">
-                                                        <i class="zmdi zmdi-mail-send"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
-                                                        <i class="zmdi zmdi-delete"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top" title="More">
-                                                        <i class="zmdi zmdi-more"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                        @endforeach
                                         
                                     </tbody>
                                 </table>
@@ -110,5 +78,6 @@
                     </div>
                 </div>
             </section>
+        @endif 
     </div>
 @stop
