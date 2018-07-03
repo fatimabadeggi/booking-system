@@ -1,5 +1,16 @@
 <?php 
     use Carbon\Carbon;
+
+	$price = 0;
+	$decostatus = false;
+
+	if($deco_price_option == 'yes') {
+		$price = $hallinfo->dec_price;
+		$decostatus = true;
+	} else {
+		$price = $hallinfo->no_dec_price;
+	}	
+		
 ?>
 <html>
 	<head>
@@ -41,19 +52,60 @@
 				<thead>
 					<tr>
 						<th><span contenteditable>Item</span></th>
-						<th><span contenteditable>Description</span></th>
+						<th style="width:300px;"><span contenteditable>Description</span></th>
 						<th><span contenteditable>Rate</span></th>
-						<th><span contenteditable>Quantity</span></th>
+						<th><span contenteditable>Hours</span></th>
 						<th><span contenteditable>Price</span></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><a class="cut">-</a><span contenteditable>Front End Consultation</span></td>
-						<td><span contenteditable>Experience Review</span></td>
-						<td><span data-prefix>$</span><span contenteditable>150.00</span></td>
-						<td><span contenteditable>4</span></td>
-						<td><span data-prefix>$</span><span>600.00</span></td>
+						<td><a class="cut">-</a><span contenteditable>
+							{{ $hallinfo->name }}
+						</span></td>
+						<td><span contenteditable>
+							Space: {{ $hallinfo->inventorytype->type }}
+
+							<br/>
+							<p>
+								Capacity: {{ $hallinfo->size }}
+							</p>
+
+							<br/>
+
+							<p>
+								Decoration: 
+									@if($decostatus) Yes
+									@else NO
+									@endif
+							</p>
+
+							<br/>
+
+							<p>
+								Status: {{ $booking->status }}
+							</p>
+
+							<br/>
+
+							<p>
+								Date: {{ $booking->booking_date->format('l d F Y') }}
+							</p>
+
+						</span></td>
+						<td><span data-prefix>$</span><span contenteditable>
+
+							{{ $price }}
+							
+						</span></td>
+						<td><span contenteditable>
+							{{ $booking->hours }}
+						</span></td>
+
+						<td><span data-prefix>$</span>
+						<span>
+							{{ $booking->price }}
+						</span></td>
 					</tr>
 				</tbody>
 			</table>
@@ -61,7 +113,9 @@
 			<table class="balance">
 				<tr>
 					<th><span contenteditable>Total</span></th>
-					<td><span data-prefix>$</span><span>600.00</span></td>
+					<td><span data-prefix>$</span><span>
+						{{ $price }}
+					</span></td>
 				</tr>
 				<tr>
 					<th><span contenteditable>Amount Paid</span></th>
@@ -69,14 +123,19 @@
 				</tr>
 				<tr>
 					<th><span contenteditable>Balance Due</span></th>
-					<td><span data-prefix>$</span><span>600.00</span></td>
+					<td><span data-prefix>$</span>
+					<span>{{ $price }}</span></td>
 				</tr>
 			</table>
 		</article>
 		<aside>
 			<h1><span contenteditable>Additional Notes</span></h1>
 			<div contenteditable>
-				<p>A finance charge of 1.5% will be made on unpaid balances after 30 days.</p>
+				<ul>
+					<li>A finance charge of 1.5% will be made on unpaid balances after 30 days.</li>
+
+				</ul>
+				
 			</div>
 		</aside>
 	</body>

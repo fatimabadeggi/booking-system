@@ -49,6 +49,17 @@
                         </div>
 
                         <div class="form-group">
+                            <label for="cc-payment" 
+                            class="control-label mb-1">Hours:</label>
+
+                                <input name="hours" 
+                                type="text" class="form-control" placeholder="0 Hour"/>    
+                                    
+                                </select>
+                        </div>
+
+
+                        <div class="form-group">
                             <label for="cc-payment" class="control-label mb-1">
                             Reservation Date:</label>
 

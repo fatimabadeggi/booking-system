@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use Auth;
 
 use App\InventoryItem;
+use App\Booking;
 
 class ReservationController extends Controller
 {
@@ -39,8 +40,15 @@ class ReservationController extends Controller
         
         $rules = [
             'res_date'=> 'required',
+            'hours' => 'required|integer'
         ];
         Validator::make($formdata, $rules)->validate();
+
+        //check length
+        if(strlen($formdata['hours']) > 2) {
+            return redirect()->back();
+        }
+
 
         //split string
         $datefields = explode('-', $formdata['res_date']);
@@ -86,14 +94,63 @@ class ReservationController extends Controller
             return redirect()->back();
         }
 
-        //store
         $user = Auth::user();
         $hallinfo = InventoryItem::find($formdata['hall_id']);
+        $deco_price_option = $formdata['dec_price_option'];
 
-        return view('admin.reservation-invoice', compact('user', 'hallinfo'));
+        //couple the date 
+        //$carbondatefields[0] => 2018, $carbondatefields[1] => 12, $carbondatefields[2]=> 12
+        $carbondatefieldsimplode = implode('-', $carbondatefields);
 
-        //dd($formdata);
+        //verify item is not booked
+        $inventory_id = $hallinfo->id;
+        $isbooked = Booking::where(
+            'inventory_id', $inventory_id)
+            ->where('status', 'booked')
+            ->whereDate('booking_date', $carbondatefieldsimplode)->count();
 
+        //hall has already been booked for this date
+        if ($isbooked == 1) {
+            return redirect()->back();
+        }
+
+        //calculate price
+        $rate = 0;
+        $hours = $formdata['hours'];
+        
+        if ($deco_price_option == 'yes') {
+            $rate = $hallinfo->dec_price;
+        } else {
+            $rate = $hallinfo->no_dec_price;
+        }
+
+        $price = $hours * $rate;
+
+        //save to db
+        $user_id = Auth::user()->id;
+        $inventory_id = $hallinfo->id;
+        $decoration = $deco_price_option;
+        
+        $booking = new Booking();
+        $booking->user_id = $user_id;
+        $booking->inventory_id = $inventory_id;
+        $booking->hours = $hours;
+        $booking->decoration = $decoration;
+        $booking->status = 'pendding';
+        $booking->price = $price;
+        $booking->booking_date = $carbondate;
+        $booking->save();
+
+        //check if hall has be reserved by another customer
+        $availablebookings = Booking::where(
+            'inventory_id', $inventory_id)
+            ->where('status', 'pendding')
+            ->whereDate('booking_date', $carbondatefieldsimplode)
+            ->count();
+        
+        return view('admin.reservation-invoice', 
+            compact('user', 'hallinfo', 'deco_price_option', 
+            'booking', 'availablebookings'));
 
     }
 }
