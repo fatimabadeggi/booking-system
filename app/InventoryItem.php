@@ -8,8 +8,7 @@ class InventoryItem extends Model
 {
     protected $table = 'InventoryItem';
 
-    public $fillable = ['name', 'size', '
-        inventory_type_id', 'status', 'dec_price', 'no_dec_price'];
+    public $fillable = ['name', 'size', 'inventory_type_id', 'status', 'dec_price', 'no_dec_price'];
 
 
     //relationship mapping

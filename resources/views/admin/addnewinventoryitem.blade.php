@@ -11,6 +11,8 @@
         $updatestatus = true;
         $headingTxt = 'Update';
     }
+
+    //dd($errors)
 ?> 
 <div class="page-content--bgf7">
     <!-- DATA TABLE-->

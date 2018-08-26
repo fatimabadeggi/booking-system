@@ -33,6 +33,8 @@ class InventoryItemController extends Controller
     public function processForm(Request $request)
     {
 
+       
+
         $formdata = $request->except('_token');
 
         $rules = [
