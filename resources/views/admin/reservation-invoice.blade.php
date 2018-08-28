@@ -29,7 +29,7 @@
 				<p>Tel: {{$user->tel}}</p>
                 <p>Email: {{$user->email}}</p>
 			</address>
-			<span><img alt="logo" src="">
+			<span><img src="/images/icon/LOGO TWO.PNG"/>
             </span>
 		</header>
 		<article>
@@ -43,7 +43,7 @@
 					<td><span contenteditable>{{ rand(1000,9000) }}</span></td>
 				</tr>
 				<tr>
-					<th><span contenteditable>Date</span></th>
+					<th><span contenteditable>Today's date</span></th>
 					<td><span contenteditable>{{ Carbon::today()->format('d F Y') }}</span></td>
 				</tr>
 				
@@ -67,6 +67,7 @@
 							Space: {{ $hallinfo->inventorytype->type }}
 
 							<br/>
+							
 							<p>
 								Capacity: {{ $hallinfo->size }}
 							</p>
@@ -89,7 +90,7 @@
 							<br/>
 
 							<p>
-								Date: {{ $booking->booking_date->format('l d F Y') }}
+								Date reserved: {{ $booking->booking_date->format('l d F Y') }}
 							</p>
 
 						</span></td>
