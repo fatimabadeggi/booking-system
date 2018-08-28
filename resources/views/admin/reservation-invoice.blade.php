@@ -23,7 +23,7 @@
 	<body>
 		<header>
 			<h1>Invoice</h1>
-			<address contenteditable>
+			<address>
 				<p>Name: {{$user->fullname}}</p>
 				<p>Address: {{$user->address}}</p>
 				<p>Tel: {{$user->tel}}</p>
@@ -34,36 +34,36 @@
 		</header>
 		<article>
 			<h1>Recipient</h1>
-			<address contenteditable>
+			<address>
 				<p>CodeLab</p>
 			</address>
 			<table class="meta">
 				<tr>
-					<th><span contenteditable>Invoice #</span></th>
-					<td><span contenteditable>{{ rand(1000,9000) }}</span></td>
+					<th><span>Invoice #</span></th>
+					<td><span>{{ rand(1000,9000) }}</span></td>
 				</tr>
 				<tr>
-					<th><span contenteditable>Date</span></th>
-					<td><span contenteditable>{{ Carbon::today()->format('d F Y') }}</span></td>
+					<th><span>Date</span></th>
+					<td><span>{{ Carbon::today()->format('d F Y') }}</span></td>
 				</tr>
 				
 			</table>
 			<table class="inventory">
 				<thead>
 					<tr>
-						<th><span contenteditable>Item</span></th>
-						<th style="width:300px;"><span contenteditable>Description</span></th>
-						<th><span contenteditable>Rate</span></th>
-						<th><span contenteditable>Hours</span></th>
-						<th><span contenteditable>Price</span></th>
+						<th><span>Item</span></th>
+						<th style="width:300px;"><span>Description</span></th>
+						<th><span>Rate</span></th>
+						<th><span>Hours</span></th>
+						<th><span>Price</span></th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
-						<td><a class="cut">-</a><span contenteditable>
+						<td><a class="cut">-</a><span>
 							{{ $hallinfo->name }}
 						</span></td>
-						<td><span contenteditable>
+						<td><span>
 							Space: {{ $hallinfo->inventorytype->type }}
 
 							<br/>
@@ -93,16 +93,17 @@
 							</p>
 
 						</span></td>
-						<td><span data-prefix>$</span><span contenteditable>
+						<td><span data-prefix>&#x20A6;</span>
+						<span>
 
 							{{ $price }}
 							
 						</span></td>
-						<td><span contenteditable>
+						<td><span >
 							{{ $booking->hours }}
 						</span></td>
 
-						<td><span data-prefix>$</span>
+						<td><span data-prefix>&#x20A6;</span>
 						<span>
 							{{ $booking->price }}
 						</span></td>
@@ -112,19 +113,21 @@
 			<a class="add">+</a>
 			<table class="balance">
 				<tr>
-					<th><span contenteditable>Total</span></th>
-					<td><span data-prefix>$</span><span>
-						{{ $price }}
+					<th><span>Total</span></th>
+					<td><span data-prefix>&#x20A6;</span><span>
+						{{ $booking->price }}
 					</span></td>
 				</tr>
 				<tr>
-					<th><span contenteditable>Amount Paid</span></th>
-					<td><span data-prefix>$</span><span contenteditable>0.00</span></td>
+					<th><span>Amount Paid</span></th>
+					<td><span data-prefix>&#x20A6;</span><span>
+					{{ $booking->price }}
+					</span></td>
 				</tr>
 				<tr>
-					<th><span contenteditable>Balance Due</span></th>
-					<td><span data-prefix>$</span>
-					<span>{{ $price }}</span></td>
+					<th><span>Balance Due</span></th>
+					<td><span data-prefix>&#x20A6;</span>
+					<span>{{ number_format($booking->price) }}</span></td>
 				</tr>
 			</table>
 		</article>
