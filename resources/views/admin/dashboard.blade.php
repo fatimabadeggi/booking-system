@@ -10,7 +10,7 @@
         <!-- DATA TABLE-->
         
         @if(Auth::user()->isAdmin())
-            isAdmin
+            <h3><b>Administrator</b></h3>
         @else
             <section class="p-t-20">
                 <div class="container">

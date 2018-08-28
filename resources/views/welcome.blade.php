@@ -6,7 +6,7 @@
 </style>
 	
 
-	<title>Property Management Website - PropertyManagerWebsites.com</title>    <meta name="description" content="Need a property management website?  Nobody builds them better than Property Manager Websites.  More traffic through SEO and better conversion means your property management business grows faster!">    <meta name="keywords" content="Property Management Website, Websites for Property Managers, Property Manager Websites, Property Management Websites, Property Manager Website, Property Management SEO">            <meta charset="utf-8">
+	<title>Hills Palace- hall rentals Websites.com</title>    <meta name="description" content="Need a property management website?  Nobody builds them better than Property Manager Websites.  More traffic through SEO and better conversion means your property management business grows faster!">    <meta name="keywords" content="Property Management Website, Websites for Property Managers, Property Manager Websites, Property Management Websites, Property Manager Website, Property Management SEO">            <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
