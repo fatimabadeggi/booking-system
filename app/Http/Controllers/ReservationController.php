@@ -19,16 +19,18 @@ class ReservationController extends Controller
 
         $inventoryitems = InventoryItem::all();
 
+        
         $halls = collect();
 
         //fiter halls
         if (!$inventoryitems->isEmpty()) {
 
             $halls = $inventoryitems->reject(function($item){
-                return $item->inventorytype->type != 'hall';
+                $type = strtolower($item->inventorytype->type);
+                return ($type != 'hall');
             });
 
-        }
+        }       
         
         return view('admin.list-available-halls', compact('halls'));
     }

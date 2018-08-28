@@ -2,7 +2,6 @@
 @section('title') Reservation Form @stop 
 @section('header-nav-bar') @include('header-nav-bar') @stop 
 @section('page-title') Halls @stop 
-
 @section('page-content')
 <div class="page-content--bgf7">
     
