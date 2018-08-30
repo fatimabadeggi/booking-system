@@ -40,7 +40,7 @@ Route::post('/registration',
 Route::get('/home', 'HomeController@index')->name('home');
 
 //Admin Routes
-Route::get('/dashboard', 'DashboardController@showPage')->middleware('auth');
+Route::get('/dashboard', 'DashboardController@showPage')->middleware('auth')->name('dashboard');
 Route::get('/viewcustomers', 'ViewCustomerController@showCustomers')->middleware('auth');
 
 //new inventory type  routes
@@ -65,5 +65,5 @@ Route::post('/deleteinventoryitem', 'InventoryItemController@deleteItem')->middl
 Route::get('/makereservation', 'ReservationController@showListOfHalls')->middleware('auth');
 Route::post('/makereservation', 'ReservationController@processReservation')->middleware('auth');
 
-
-
+//update payment
+Route::post('/updatepayment', 'DashboardController@updatePaymentStatus');

@@ -16,4 +16,9 @@ class Booking extends Model
     {
         return $this->belongsTo(InventoryItem::class, 'inventory_id');
     }
+
+    public function user() 
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }
