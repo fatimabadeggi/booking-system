@@ -25,7 +25,12 @@
                                     <tbody>
                                         <?php $i = 1; ?>
                                         @foreach($bookings as $booking)
-                                        <tr class="tr-shadow">
+                                        <tr class="tr-shadow"
+                                        
+                                        @if($booking->status == 'Cancel')
+                                         style="text-decoration:line-through; color:red;"
+                                        @endif 
+                                        >
                                             <td>{{ $i++ }}</td>
                                             <td>{{ $booking->inventoryItem->name }}</td>
                                             <td>
@@ -68,6 +73,7 @@
                                                 <div class="table-data-feature">
                                                     @if(Auth::user()->isAdmin())
                                                     
+                                                    @if($booking->status != 'Cancel')
                                                     @if ($booking->status != 'Paid')
                                                     <form action="/updatepayment" method="post">
                                                     {{ csrf_field() }}
@@ -80,12 +86,20 @@
                                                     </form>
                                                     @endif
                                                     @endif
+                                                    @endif
 
                                                     @if(!Auth::user()->isAdmin())
+
+                                                    @if($booking->status != 'Cancel')
+                                                    <form action="/cancelreservation" method="post">
+                                                    {{ csrf_field() }}
+                                                    <input type="hidden" name="bookingid" value="{{ $booking->id }}">
                                                     <button class="item" data-toggle="tooltip" 
-                                                        data-placement="top" title="Delete">
+                                                        data-placement="top" title="Cancel">
                                                         <i class="zmdi zmdi-delete"></i>
                                                     </button>
+                                                    </form>
+                                                    @endif
                                                     @endif
                                                 </div>
                                             </td>

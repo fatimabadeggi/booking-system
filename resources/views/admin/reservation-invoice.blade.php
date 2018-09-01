@@ -21,6 +21,10 @@
 		<script src="script.js"></script>
 	</head>
 	<body>
+		<div>
+			<a href="/dashboard" 
+			style="color:blue; text-decoration:underline;"> Back to Dashboard</a>
+		</div>
 		<header>
 			<h1>Invoice</h1>
 			<address>

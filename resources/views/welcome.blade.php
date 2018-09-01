@@ -67,13 +67,6 @@
 
     <li class="first"><a href="/login">Login</a></li>
 
-	<li>Pricing
-		<ul>
-			<li><a href="#">Website Setup Pricing</a></li>
-			<li><a href="#">Hosting Pricing</a></li>
-		</ul>
-	</li>
-
     <li><a href="/gallery">Gallery</a></li>
     <li><a href="/registration">Registeration</a></li>
 </ul>

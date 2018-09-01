@@ -5,6 +5,31 @@
 @section('page-content')
 <div class="page-content--bgf7">
     
+    @if (!$errors->isEmpty())
+            <div class="sufee-alert alert alert-danger alert-dismissible fade show">
+				<span class="badge badge-pill badge-info">Error</span>
+				
+                @if($errors->has('res_date')) 
+                    <li>{{ $errors->get('res_date')[0] }}</li>
+                @endif
+
+                @if($errors->has('hours')) 
+                    <li>{{ $errors->get('hours')[0] }}</li>
+                @endif
+    
+			</div>
+    @endif
+
+    @if(Session::has('reservation_not_available')) {
+        <div class="sufee-alert alert alert-danger alert-dismissible fade show">
+				<span class="badge badge-pill badge-info">Error</span>
+
+            {{ Session::get('reservation_not_available') }}
+
+        </div>
+    }
+    @endif
+
     <div class="container-fluid">
         <div class="row" style="padding-top:50px;">
             

@@ -23,7 +23,8 @@ class DashboardController extends Controller
         return view('admin.dashboard', compact('user', 'bookings'));
     }
 
-    public function updatePaymentStatus(Request $resquest) {
+    public function updatePaymentStatus(Request $resquest) 
+    {
 
         $bookingid = $resquest->get('bookingid');
 
@@ -35,4 +36,17 @@ class DashboardController extends Controller
         return redirect('/dashboard');
 
     }
+
+    public function cancelReservation(Request $resquest) 
+    {
+        $bookingid = $resquest->get('bookingid');
+        
+        //search for this booking
+        $booking = Booking::find($bookingid);
+        $booking->status = 'Cancel';
+        $booking->save();
+
+        return redirect('/dashboard');
+    }
+
 }

@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/gallery', function() {
+    return view('gallery');
+});
+
 Route::get('/login', 
     'Auth\LoginController@showLoginForm')->name('login');
 
@@ -31,13 +35,6 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::post('/registration', 
 'RegistrationFormController@processForm');
 
-// Route::post('/login', '');
-
-
-
-//Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 //Admin Routes
 Route::get('/dashboard', 'DashboardController@showPage')->middleware('auth')->name('dashboard');
@@ -67,3 +64,4 @@ Route::post('/makereservation', 'ReservationController@processReservation')->mid
 
 //update payment
 Route::post('/updatepayment', 'DashboardController@updatePaymentStatus');
+Route::post('cancelreservation', 'DashboardController@cancelReservation');

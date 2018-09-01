@@ -48,6 +48,12 @@
                                     <a href="/registration">Sign Up Here</a>
                                 </p>
                             </div>
+
+                            <div class="register-link">
+                                <p>
+                                    <a href="/">Home Page</a>
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

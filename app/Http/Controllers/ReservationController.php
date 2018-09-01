@@ -108,12 +108,14 @@ class ReservationController extends Controller
         $inventory_id = $hallinfo->id;
         $isbooked = Booking::where(
             'inventory_id', $inventory_id)
-            ->where('status', 'booked')
+            ->where('status', 'Paid')
             ->whereDate('booking_date', $carbondatefieldsimplode)->count();
 
         //hall has already been booked for this date
         if ($isbooked == 1) {
-            return redirect()->back();
+            return redirect()
+            ->back() ->with('reservation_not_available', 
+            "Sorry. This hall is already been booked");
         }
 
         //calculate price
@@ -142,14 +144,7 @@ class ReservationController extends Controller
         $booking->price = $price;
         $booking->booking_date = $carbondate;
         $booking->save();
-
-        //check if hall has be reserved by another customer
-        $availablebookings = Booking::where(
-            'inventory_id', $inventory_id)
-            ->where('status', 'pendding')
-            ->whereDate('booking_date', $carbondatefieldsimplode)
-            ->count();
-        
+ 
         return view('admin.reservation-invoice', 
             compact('user', 'hallinfo', 'deco_price_option', 
             'booking', 'availablebookings'));
