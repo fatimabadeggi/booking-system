@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +16,52 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/gallery', function() {
+    return view('gallery');
+});
+
+Route::get('/login', 
+    'Auth\LoginController@showLoginForm')->name('login');
+
+Route::post('/login', 'Auth\LoginController@login');
+
+Route::get('/registration', function() {
+    return view('registration-form');
+});
+
+Route::get('/logout', 'Auth\LoginController@logout');
+
+Route::post('/registration', 
+'RegistrationFormController@processForm');
+
+
+//Admin Routes
+Route::get('/dashboard', 'DashboardController@showPage')->middleware('auth')->name('dashboard');
+Route::get('/viewcustomers', 'ViewCustomerController@showCustomers')->middleware('auth');
+
+//new inventory type  routes
+Route::get('/addnewinventorytype', 'InventoryTypeController@showPage')
+    ->middleware('auth');
+Route::post('/addnewinventorytype', 'InventoryTypeController@processForm')->middleware('auth');
+Route::get('/editinventorytype/{id}', 'InventoryTypeController@getInventoryType')->middleware('auth');
+Route::post('/editinventorytype', 'InventoryTypeController@updateInventoryType')->middleware('auth');
+Route::post('/deleteinventorytype', 'InventoryTypeController@deleteType')->middleware('auth');
+
+
+//inventory item
+Route::get('/addnewinventoryitem', 'InventoryItemController@showPage')
+->middleware('auth');
+Route::post('/addnewinventoryitem', 'InventoryItemController@processForm')
+->middleware('auth');
+Route::get('/editinventoryitem/{id}', 'InventoryItemController@getInventoryItem')->middleware('auth');
+Route::post('/editinventoryitem', 'InventoryItemController@updateInventoryItem')->middleware('auth');
+Route::post('/deleteinventoryitem', 'InventoryItemController@deleteItem')->middleware('auth');
+
+//Reservations
+Route::get('/makereservation', 'ReservationController@showListOfHalls')->middleware('auth');
+Route::post('/makereservation', 'ReservationController@processReservation')->middleware('auth');
+
+//update payment
+Route::post('/updatepayment', 'DashboardController@updatePaymentStatus');
+Route::post('cancelreservation', 'DashboardController@cancelReservation');
